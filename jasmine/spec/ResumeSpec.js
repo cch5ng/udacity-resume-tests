@@ -18,6 +18,7 @@ $(function() {
         it('properties are defined', function() {
             expect(bio).toBeDefined();
             expect(bio.length).not.toBe(0);
+            expect(typeof bio).toBe("object");
             expect(bio.name).toBeDefined();
             expect(typeof bio.name).toBe("string");
             expect(bio.role).toBeDefined();
@@ -29,6 +30,8 @@ $(function() {
             expect(bio.skills).toBeDefined();
             expect(typeof bio.skills).toBe("object");
             expect(bio.skills.length).toBeGreaterThan(0);
+            expect(bio.display).toBeDefined();
+            expect(typeof bio.display).toBe("function");
         });
 
         it('contact properties are defined', function() {
@@ -52,6 +55,9 @@ $(function() {
         it('properties are defined', function() {
             expect(education).toBeDefined();
             expect(education.length).not.toBe(0);
+            expect(typeof education).toBe("object");
+            expect(education.display).toBeDefined();
+            expect(typeof education.display).toBe("function");
         });
 
         it('schools properties are defined', function() {
@@ -90,11 +96,70 @@ $(function() {
                 expect(typeof course.url).toBe("string");
             })
         });
-
     });
 
     // TODO suite for work
+    describe('work object', function() {
+
+        it('properties are defined', function() {
+            expect(work).toBeDefined();
+            expect(work.length).not.toBe(0);
+            expect(typeof work).toBe("object");
+            expect(work.display).toBeDefined();
+            expect(typeof work.display).toBe("function");
+        });
+
+        it('jobs properties are defined', function() {
+            expect(work.jobs).toBeDefined();
+            expect(typeof work.jobs).toBe("object");
+
+            work.jobs.forEach(function(job) {
+                expect(job.employer).toBeDefined();
+                expect(typeof job.employer).toBe("string");
+                expect(job.title).toBeDefined();
+                expect(typeof job.title).toBe("string");
+                expect(job.location).toBeDefined();
+                expect(typeof job.location).toBe("string");
+                expect(job.dates).toBeDefined();
+                expect(typeof job.dates).toBe("string");
+                expect(job.description).toBeDefined();
+                expect(typeof job.description).toBe("string");
+            })
+        });
+    });
 
     // TODO suite for projects
+    describe('projects object', function() {
+
+        it('properties are defined', function() {
+            expect(projects).toBeDefined();
+            expect(projects.length).not.toBe(0);
+            expect(typeof projects).toBe("object");
+            expect(projects.display).toBeDefined();
+            expect(typeof projects.display).toBe("function");
+        });
+
+        it('projects properties are defined', function() {
+            expect(projects.projects).toBeDefined();
+            expect(typeof projects.projects).toBe("object");
+
+            projects.projects.forEach(function(project) {
+                expect(project.title).toBeDefined();
+                expect(typeof project.title).toBe("string");
+                expect(project.dates).toBeDefined();
+                expect(typeof project.dates).toBe("string");
+                expect(project.description).toBeDefined();
+                expect(typeof project.description).toBe("string");
+                expect(project.images).toBeDefined();
+                expect(typeof project.images).toBe("object");
+
+                project.images.forEach(function(image) {
+                    expect(image).toBeDefined();
+                    expect(typeof image).toBe("string");
+                })
+            })
+        });
+    });
+
 
 }());

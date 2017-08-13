@@ -16,7 +16,7 @@ var bio = {
 	"skills" : [" JavaScript", " HTML", " CSS", " MVC Pattern", " Python", " Testing"]
 }; // " Java", " Selenium" " Object Oriented Programming", 
 
-bio.displayBio = function() {
+bio.display = function() {
 	var formattedName = HTMLheaderName.replace(["%data%"],bio.name);
 	var formattedRole = HTMLheaderRole.replace(["%data%"],bio.role).replace(["%location%"],bio.contacts.location);
 	var formattedEmail = HTMLemail.replace(["%data%"], bio.contacts.email);
@@ -27,16 +27,7 @@ bio.displayBio = function() {
 	$("#header").prepend(formattedRole);
 	$("#header").prepend(formattedName);
 	$("#topContacts, #footerContacts").append(formattedEmail, formattedMobile, formattedGithub, formattedTwitter);
-	// $("#topContacts").append(formattedMobile);
-	// $("#topContacts").append(formattedGithub);
-	// $("#topContacts").append(formattedTwitter);
-	// $("#footerContacts").append(formattedEmail);
-	// $("#footerContacts").append(formattedMobile);
-	// $("#footerContacts").append(formattedGithub);
-	// $("#footerContacts").append(formattedTwitter);
-};
 
-bio.displaySkills = function() {
 	if (bio.skills.length > 0) {
 		$("#header").append(HTMLskillsStart);
 		bio.skills.forEach(function(skill) {
@@ -46,46 +37,50 @@ bio.displaySkills = function() {
 	}
 };
 
-bio.displayBio();
-bio.displaySkills();
 
-var project = {
+var projects = {
 	"projects" : [
 						{	"title" : "Random Interview Questions",
 							"dates" : "March 2015",
 							"description" : "Web application for Front End Developer Interviews. Skills used: Angular.js and Responsive Design",
 							"url" : "http://cch5ng.github.io/angular_front_end_interview",
-							"source" : "https://github.com/cch5ng/angular_front_end_interview/tree/gh-pages"
+							"source" : "https://github.com/cch5ng/angular_front_end_interview/tree/gh-pages",
+							"images": [""]
 						},
 						{	"title" : "Westwood Faves",
 							"dates" : "Jan 2015",
 							"description" : "Map web application showing favorite spots around Westwood and allowing search. Skills used: Responsive Design, Javascript DOM Manipulation, JSON.",
 							"url" : "http://cch5ng.github.io/udacity_p5-minicourse-ajax-project/",
-							"source" : "https://github.com/cch5ng/frontend-nanodegree-resume/tree/gh-pages"
+							"source" : "https://github.com/cch5ng/frontend-nanodegree-resume/tree/gh-pages",
+							"images": [""]
 						},
 						{	"title" : "Arcade Game",
 							"dates" : "Nov 2014 - Nov 2014",
 							"description" : "Web application recreating classic bug dodging arcade game. Skills used: Javascript, Object Oriented Programming",
 							"url" : "http://cch5ng.github.io/frontend-nanodegree-arcade-game/",
-							"source" : ""
+							"source" : "",
+							"images": [""]
 						},
 						{	"title" : "Portfolio",
 							"dates" : "Oct 2014 - Nov 2014",
 							"description" : "Responsive portfolio site. Skills used: HTML, CSS, Bootstrap, Responsive Design.",
 							"url" : "http://cch5ng.github.io/web_dev1_udacity/project1/bootstrap/portfolio.html",
-							"source" : ""
+							"source" : "",
+							"images": [""]
 						},
 						{	"title" : "Endangered",
 							"dates" : "July 2014",
 							"description" : "Web drawing with intention to bring attention to endangered African Elephants. Exploration of subtractive drawing. Skills used: Processing, Photoshop.",
 							"url" : "http://www.openprocessing.org/sketch/154115",
-							"source" : ""
+							"source" : "",
+							"images": [""]
 						},
 						{	"title" : "Spryo-Hanky",
 							"dates" : "June 2014",
 							"description" : "Web drawing like the spyrograph toy. Skills used: Processing.",
 							"url" : "http://www.openprocessing.org/sketch/165458",
-							"source" : ""
+							"source" : "",
+							"images": [""]
 						} //,
 						// {	"title" : "Therapeutic (Anger Management)",
 						// 	"dates" : "March 2014",
@@ -95,21 +90,18 @@ var project = {
 	]
 };
 
-project.displayProject = function() {
-	for (var proj in project.projects) {
+projects.display = function() {
+	projects.projects.forEach(function(project) {
 		$("#projects").append(HTMLprojectStart);
-		var formattedTitle = HTMLprojectTitle.replace(["%data%"], project.projects[proj].title).replace(["%url%"], project.projects[proj].url);
-		var formattedDates = HTMLprojectDates.replace(["%data%"], project.projects[proj].dates);
-		var formattedDescription = HTMLprojectDescription.replace(["%data%"], project.projects[proj].description);
-		//var formattedSource = HTMLprojectSource.replace(["%data%"], project.projects[proj].source);
+		var formattedTitle = HTMLprojectTitle.replace(["%data%"], project.title).replace(["%url%"], project.url);
+		var formattedDates = HTMLprojectDates.replace(["%data%"], project.dates);
+		var formattedDescription = HTMLprojectDescription.replace(["%data%"], project.description);
+		//var formattedSource = HTMLprojectSource.replace(["%data%"], project.source);
 		$(".project-entry:last").append(formattedTitle);
 		$(".project-entry:last").append(formattedDates);
 		$(".project-entry:last").append(formattedDescription);
-		//$(".project-entry:last").append(formattedSource);
-	}
+	})
 };
-
-project.displayProject();
 
 var work = {
 	"jobs" : [
@@ -146,7 +138,7 @@ var work = {
 	]
 };
 
-work.displayWork = function() {
+work.display = function() {
 	for (var job in work.jobs) {
 		$("#workExperience").append(HTMLworkStart);
 		var formattedEmployer = HTMLworkEmployer.replace(["%data%"], work.jobs[job].employer);
@@ -160,9 +152,6 @@ work.displayWork = function() {
 		$(".work-entry:last").append(formattedDescriptions);
 	}
 };
-
-work.displayWork();
-
 
 //note - schools is an array with one element; education.schools.degree and education.schools.major are both arrays with 2 elements
 var education = {
@@ -234,35 +223,34 @@ var education = {
 };
 
 //note - hardcoded schools[0] even though there is only one array item; otherwise google maps display would break
-education.displaySchool = function() {
-	for (var item in education.schools[0].degree) {
-		$("#education").append(HTMLschoolStart);
-		var formattedSchoolName = HTMLschoolName.replace(["%data%"], education.schools[0].name);
-		var formattedSchoolDegree = HTMLschoolDegree.replace(["%data%"], education.schools[0].degree[item]);
-		var formattedSchoolMajor  = HTMLschoolMajor.replace(["%data%"], education.schools[0].majors[item]);
-		var formattedSchoolDates = HTMLschoolDates.replace(["%data%"], education.schools[0].dates);
-		var formattedSchoolLocation = HTMLschoolLocation.replace(["%data%"], education.schools[0].location);
+education.display = function() {
+	$("#education").append(HTMLschoolStart);
+
+	education.schools.forEach(function(school) {
+		var formattedSchoolName = HTMLschoolName.replace(["%data%"], school.name);
+		var formattedSchoolDegree = HTMLschoolDegree.replace(["%data%"], school.degree);
+		var formattedSchoolMajor  = HTMLschoolMajor.replace(["%data%"], school.majors);
+		var formattedSchoolDates = HTMLschoolDates.replace(["%data%"], school.dates);
+		var formattedSchoolLocation = HTMLschoolLocation.replace(["%data%"], school.location);
 		$(".education-entry:last").append(formattedSchoolName + formattedSchoolDegree);
 		$(".education-entry:last").append(formattedSchoolDates);
 		$(".education-entry:last").append(formattedSchoolLocation);
 		$(".education-entry:last").append(formattedSchoolMajor);
-	}		
-};
+	})
 
-education.displayOnlineClasses = function() {
 	$("#education").append(HTMLonlineClasses);
-	for (var course in education.onlineCourses) {
+	$("#education").append(HTMLschoolStart);
+
+	education.onlineCourses.forEach(function(course) {
 		$("#education").append(HTMLschoolStart);
-		var formattedOnlineClassTitle = HTMLonlineTitle.replace(["%data%"], education.onlineCourses[course].title).replace(["%classUrl%"], education.onlineCourses[course].url);
-		var formattedOnlineClassSchool = HTMLonlineSchool.replace(["%data%"], education.onlineCourses[course].school);
-		var formattedOnlineClassDates = HTMLonlineDates.replace(["%data%"], education.onlineCourses[course].dates);
+		var formattedOnlineClassTitle = HTMLonlineTitle.replace(["%data%"], course.title).replace(["%classUrl%"], course.url);
+		var formattedOnlineClassSchool = HTMLonlineSchool.replace(["%data%"], course.school);
+		var formattedOnlineClassDates = HTMLonlineDates.replace(["%data%"], course.dates);
 		$(".education-entry:last").append(formattedOnlineClassTitle + formattedOnlineClassSchool);
 		$(".education-entry:last").append(formattedOnlineClassDates);
-	}
-};
+	})
 
-education.displaySchool();
-education.displayOnlineClasses();
+};
 
 var skillsChart = {
 	skills: [
@@ -322,5 +310,9 @@ skillsChart.displaySkills = function() {
 };
 
 skillsChart.displaySkills();
+bio.display();
+work.display();
+education.display();
+projects.display();
 
 $("#mapDiv").append(googleMap);
