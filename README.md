@@ -2,13 +2,15 @@
 
 This a set of helper tests for grading the resume project
 
+The tests verify that the required objects are defined, that the required object properties are defined and that the property value data types match the schema
+
 ## Getting Started
 
 These instructions assume that you have a working directory with a current resume project you are grading. These are the steps required to set up the tests:
 
 * Copy jasmine.zip from the repo to the resume project folder
   * Majority of the files are coming from the [current Jasmine stand-alone test files - 2.7.0](https://github.com/jasmine/jasmine/releases)
-  * One custom file is jasmine/spec/ResumeSpec.js which verifies that the required objects are defined, that the required object properties are defined and that the property value data types match the schema
+  * One custom file is jasmine/spec/ResumeSpec.js
 * Unzip jasmine.zip
 * Edit the resume project's index.html file, adding the following lines:
 
@@ -53,6 +55,8 @@ In the case above, `contact` will give an error because the expected property is
 ## Built With
 
 * [Jasmine 2.7.0](https://github.com/jasmine/jasmine/releases) - The web framework used
+* The current ResumeSpec.js is compatible with the schema requirements for https://github.com/udacity/frontend-nanodegree-resume/blob/master/README.md (last updated 07192016) (as of 08152017).
+* There isn't a guarantee that ResumeSpec.js will always be up to date with the schema (project README.md) so the grader still has a responsibility to double check the results.
 * Love <3, Sweat, Tears (no, not really...)
 
 ## Contributing
